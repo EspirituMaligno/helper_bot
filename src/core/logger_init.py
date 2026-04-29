@@ -1,6 +1,5 @@
 # adaptive_logger.py
 import logging
-import traceback
 import sys
 import json
 from typing import Optional
