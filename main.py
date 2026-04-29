@@ -14,7 +14,7 @@ dp.include_router(vpn_hanler)
 
 
 async def main():
-    logger.info(f"Бот начал работу...")
+    logger.info("Бот начал работу...")
     await dp.start_polling(bot)
 
 

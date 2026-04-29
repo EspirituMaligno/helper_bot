@@ -1,5 +1,4 @@
 from aiogram.types import CallbackQuery
-from src.keyboards.transition_keyboard import get_transition_kb
 
 
 async def transtion_meesage_builder(topic: str, reply_kb, calld: CallbackQuery):
