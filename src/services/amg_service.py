@@ -15,12 +15,13 @@ def add_vpn_user(device_name: str) -> str:
         logger.error(
             f"Не удалось выполнить команду для генерации конфига для {device_name}"
         )
-        return
+        return None
 
     qr_path = f"/tmp/{device_name}_qr.png"
     is_created_qr = subprocess.run(["qrencode", "-o", qr_path, "-r", conf_path])
 
     if not is_created_qr:
         logger.error(f"Не удалось создать qr код для {device_name}")
+        return None
 
     return {"conf_path": conf_path, "qr_path": qr_path}
