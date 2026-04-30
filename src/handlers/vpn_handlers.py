@@ -11,6 +11,7 @@ from src.keyboards.transition_keyboard import get_transition_kb
 from src.services.amg_service import add_vpn_user
 from src.states.vpn_state import VpnStates
 from src.core.config import settings
+from src.core.logger_init import logger
 
 
 router = Router()
@@ -53,6 +54,10 @@ async def handle_device_name(message: Message, state: FSMContext):
     await message.answer(f"Генерирую QR для устройства: {device_name}...")
 
     path_dict = add_vpn_user(device_name)
+
+    if not path_dict:
+        logger.error(f"Не удалось создать qr и conf")
+        return
 
     await message.answer_photo(
         FSInputFile(path_dict["qr_path"]), caption=f"VPN для {device_name}"
